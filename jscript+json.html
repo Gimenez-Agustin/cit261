@@ -1,0 +1,82 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>CIT 261</title>
+
+	<script type="text/javascript">
+
+		var myArray = [];
+		var person = new Object();
+
+		function createLoop() {
+				var value = document.getElementById("valueLoop").value;
+  			if(!isNaN(value)){
+  				var text = "";
+
+  				for(var i=0; i<value;i++){  					
+  					text+= "this is a loop value: " + (i+1) + "<br>";
+  				}
+  				document.getElementById("demo").innerHTML = text;
+  			}else{
+  				document.getElementById("demo").innerHTML = "the value you entered is not a number";
+  			}
+		}
+
+		function array(){
+			var text = document.getElementById("valueArray").value;
+			myArray.push(text);
+			document.getElementById("arrayPar").innerHTML = myArray;
+		}
+
+		function createObject(){
+			var name = document.getElementById("name").value;
+			var lastname = document.getElementById("lastname").value;
+			var age = document.getElementById("age").value;
+			person.name= name;
+			person.lastname = lastname;
+			person.age = age;
+			document.getElementById("objectPar").innerHTML = person.name + " " + person.lastname + " is " + person.age + " years old.";;
+		}
+
+		function parseJSON(){
+			var jsonString = '{ "name":"Agustin", "age":29, "country":"Argentina"}';
+			var text = JSON.stringify(jsonString);
+			var person = JSON.parse(jsonString);
+			var display = "My name is " + person.name + ". I'm " + person.age + " years old and I'm from " + person.country + "<br>";
+			document.getElementById("parse").innerHTML = display;			
+			document.getElementById("stringify").innerHTML = text;			
+		}
+
+			
+
+		
+
+	</script>
+
+</head>
+<body>
+	
+	<h1>Loop</h1>
+	<p id="demo">in this place you will see the loop information</p>
+	<input id="valueLoop" type="text"><br>
+	<button type="button" onclick="createLoop()">Create a loop!</button><br>
+<br><br>
+	<h1>Array</h1>
+	<p id="arrayPar"></p>
+	<input id="valueArray" type="text"><br>
+	<button type="button" onclick="array()">Add to the Array!</button>
+	
+	<h1>Object</h1>
+	<p id="objectPar"></p>
+	name:     <input id="name" type="text"><br><br>
+	lastname: <input id="lastname" type="text"><br><br>
+	age:      <input id="age" type="text"><br><br>
+	<button type="button" onclick="createObject()">Create an object</button>
+	
+	<h1>JSON Parse</h1>
+	<button type="button" onclick="parseJSON()">Create JSON information</button>
+	<p id="parse"><br></p>
+	<p id="stringify"></p>
+
+</body>
+</html>

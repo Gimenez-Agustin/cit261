@@ -1,0 +1,96 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>VIdeos, Audios and canvas</title>
+	<script type="text/javascript">
+
+			var canvasWidth = 200;
+			var canvasHeight = 267;
+			var width = 125;
+			var height = 105;
+			var padding = 25;
+			var lineWidth = 8;
+			var innerBorder = 5;
+			var primaryColor = "#ffc821";
+			var secondaryColor = "#faf100";
+			var tertiaryColor = "#dcaa09";
+
+		
+			window.onload = windowReady;
+
+		function windowReady()
+		{
+			// Load the context of the canvas
+			var context = document.getElementById('simpleCanvas').getContext("2d");
+			
+			var width = 125;
+			var height = 100;
+			var padding = 20;
+				
+			// Create a triangluar path
+			context.beginPath();
+			context.moveTo(padding + width/2, padding);
+			context.lineTo(padding + width, height + padding);
+			context.lineTo(padding, height + padding);
+			context.closePath();
+				
+			// Create fill gradient
+			var gradient = context.createLinearGradient(0,0,0,height);
+			gradient.addColorStop(0, primaryColor);
+			gradient.addColorStop(1, secondaryColor);
+				
+			// Add a shadow around the object
+			context.shadowBlur = 10;
+			context.shadowColor = "black";
+				
+			// Stroke the outer outline
+			context.lineWidth = lineWidth * 2;
+			context.lineJoin = "round";	
+			context.strokeStyle = gradient;
+			context.stroke();
+				
+			// Turn off the shadow, or all future fills will have shadows
+			context.shadowColor = "transparent";
+				
+			// Fill the path
+			context.fillStyle = gradient;
+			context.fill();
+				
+			// Stroke the inner outline
+			context.lineWidth = lineWidth;
+			context.lineJoin = "round";	
+			context.strokeStyle = "#333";
+			context.stroke();
+			
+			// Draw the text exclamation point
+			context.textAlign = "center";
+			context.textBaseline = "middle";
+			context.font = "bold 60px 'Times New Roman', Times, serif";
+			context.fillStyle = "#333";
+			try{
+				context.fillText("!", padding + width/2, padding + height/1.5);
+			}catch(ex){}
+		}
+		
+
+	</script>
+</head>
+<body>
+	<h1>My Videos, Audios and canvas</h1>
+	<h4>My video</h4><br>
+	<video width="320" height="240" controls>
+		<source src="movie.mp4" type="video/mp4">
+		Your browser does not support the video tag.
+	</video><br><br>
+	<h4>My Audio</h4><br>
+	<audio controls>
+  		<source src="music.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio><br><br>
+	<h4>My Canvas</h4><br>
+	<canvas id="myCanvas" width="200" height="100" style="border:10px solid #ffF000;"></canvas><br><br>
+	 <canvas id="simpleCanvas" width="200px" height="267px"></canvas>
+	 <h3><a href="http://www.williammalone.com/articles/html5-canvas-example/">This is the source of this example</a></h3>
+
+</body>
+</html>

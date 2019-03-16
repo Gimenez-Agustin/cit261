@@ -1,0 +1,112 @@
+<html>
+    <head>
+        <title>CSS Functions</title>
+
+        <script>
+            function rotate(){
+                var element = document.getElementById("shape");
+                var pos = 0;
+                var speed = setInterval(rotate, 5);
+                function rotate() {
+                    if (pos == 360) {
+                        clearInterval(speed);
+                    } else {
+                        pos++; 
+                        element.style.transform = "rotate(" + pos + "deg)";
+                    }
+                }
+            }
+
+            function change(){
+                var element = document.getElementById("shape2");
+                element.style.background = "transparent";
+                element.style.height = "0px";
+                element.style.width = "0px";
+                element.style.borderLeft = "50px solid transparent";
+                element.style.borderRight = "50px solid transparent";
+                element.style.borderBottom = "100px solid #0c7696";
+            }
+
+            function moveHorizontally(){
+                var element = document.getElementById("shape3");
+                var pos = 0;
+                var speed = setInterval(move, 5);
+                var moving = true;
+                function move() {
+                    if(moving){
+                        pos++; 
+                        element.style.left = pos + 'px';
+                        if(pos==360){
+                            moving=false;
+                        }
+                    }else{
+                        pos--; 
+                        element.style.left = pos + 'px';
+                        if(pos==0){
+                            moving=true;
+                        }
+                    }					
+                }
+            }
+
+            function moveVertically(){
+                var element = document.getElementById("shape4");                
+                var pos = 751;
+                var speed = setInterval(move, 5);
+                var moving = true;                
+                function move() {  
+                    if(moving){
+                        pos++; 
+                        element.style.top = pos + 'px';
+                        if(pos==920){
+                            moving=false;
+                        }
+                    }else{
+                        pos--; 
+                        element.style.top = pos + 'px';
+                        if(pos==751){
+                            moving=true;
+                        }
+                    }                       				
+                   
+                }
+            }
+
+            
+        </script>
+
+        <style>
+            .shape{
+                height: 100px;
+                width: 100px;
+                background-color: #bc280b;
+                position: absolute;
+                border-left: 0px solid transparent;
+                border-right: 0px solid transparent;
+                border-bottom: 0px;
+                transform: rotate(0deg);
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>Transform CSS</h2>
+        <h4>put your mouse over the shape to rotate:</h4>
+        <div id="shape" class="shape" onmouseover="rotate()"></div><br><br><br><br><br>        
+        <h2>Animation CSS</h2>
+        <div id="shape2" class="shape"></div><br><br><br><br><br>        
+        <br><br><br><button onclick="change()" >Magic</button><br><br>
+        <h2>Transitions CSS</h2>
+        <div id="shape3" class="shape" onmouseover="modify()"></div><br><br><br><br><br>        
+        <br><br><br><button onclick="moveHorizontally()" >Magic</button><br><br>
+
+        <h2>Transform CSS3 using JavaScript</h2>
+        <div id="shape4" class="shape" onmouseover="modify()"></div><br><br><br><br><br>        
+        <br><br><br><button onclick="moveVertically()" >Magic</button><br><br>
+
+    </body>
+
+    <footer>
+
+    </footer>
+</html>

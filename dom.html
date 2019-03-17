@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DOM topic</title>
+
+    <body>
+        <h1>DOM</h1>
+        
+        <ul id="bookList"></ul>
+
+		<p style="color: #0c7696;">Add a book: </p>       
+        <input type="text" id="bookName"><br><br>
+        <button onClick="addBook()">Add Book</button><br><br>
+        
+        <p style="color: red;">Delete this Book: </p>        
+        <input type="text" id="toRemove"><br><br>
+        <button onClick="removeBook()">Remove Book</button>
+      
+		<script>
+            var list = document.getElementById("bookList");
+            function addBook(){
+                var item = document.createElement("LI");
+                var book = document.createTextNode(document.getElementById("bookName").value);
+                item.appendChild(book);  
+                list.insertBefore(item, list.childNodes[0]);
+                document.getElementById("bookName").value = "";
+            }
+			
+            function removeBook(){
+                var book = document.getElementById("toRemove").value;
+                for (i = 0; i < list.childNodes.length; i++){
+                    if (list.childNodes[i].innerHTML == book){
+                        list.removeChild(list.childNodes[i]);
+                    }
+                }
+                document.getElementById("toRemove").value = "";
+            }
+		</script>
+		
+	</body>
+  </head>
+</html>  

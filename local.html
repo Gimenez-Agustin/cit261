@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <title>Local Storage</title>
+        <script>
+            function storageAvailable(type) {     
+                var storage = window[type],
+                    x = '__storage_test__';
+                storage.setItem(x, x);
+                storage.removeItem(x);
+                return true;
+            }
+
+            
+
+            function saveBook(){
+                var book = document.getElementById('book').value;
+                var author = document.getElementById('author').value;
+                var date = new Date();
+                var favorite = {book: book, author: author, date: date};
+                var myFavoriteJSON = JSON.stringify(favorite);
+                window['localStorage'].setItem('myfavorite', myFavoriteJSON);
+                document.getElementById('objectContainer').innerHTML ="good job, your data is Saved!";
+            }
+
+            function showfavorite (){
+                if (window['localStorage'].getItem('myfavorite')){
+                var favorite = window['localStorage'].getItem('myfavorite');
+                var myFavorite = JSON.parse(favorite);
+                myFavorite.make;
+                document.getElementById('objectContainer').innerHTML = 'Book: ' + myFavorite.book + '<br>' +
+                                                                    'Author: ' + myFavorite.author + '<br>' +      
+                                                                    'Date created: ' + myFavorite.date + '<br>' ;
+                }                 
+                else {
+                    document.getElementById('objectContainer').innerHTML = "You have no data.";
+                }
+            }
+            
+            
+            function storeArray(){
+                myArray = 6;
+                window['localStorage'].setItem('array', myArray);
+                console.log(window['localStorage'].getItem('array'));
+            }
+
+    </script>
+    </head>
+
+<body onload = "storeArray()">
+
+    <div id = "objectContainer"></div><br>
+    <button type = "button" onclick = "showfavorite()">show my data</button>
+
+
+    <form>
+        <h2>Add your favorite Book and Author:</h2> <br> 
+        Book:<br>
+        <input id = "book" type = "text"> <br>
+        Author:<br>
+        <input id = "author" type = "text"> <br><br>
+        <button type = "button" onclick = "saveBook()" >Save book</button>
+    </form>
+
+</body>
+
+</html>
